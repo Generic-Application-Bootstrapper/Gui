@@ -1,0 +1,16 @@
+version: "3"
+services:
+    generic-app:
+        build:
+            context: ../
+        ports:
+            # Web App
+            - target: 3000
+              published: 3000
+              protocol: tcp
+              mode: host
+            # Storybook
+            - target: 6006
+              published: 6006
+              protocol: tcp
+              mode: host

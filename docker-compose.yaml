@@ -1,0 +1,20 @@
+version: "3"
+services:
+    generic-app:
+        build:
+            context: .
+            dockerfile: ./deployments/Dockerfile
+        ports:
+            - target: 3000
+              published: 3000
+              protocol: tcp
+              mode: host
+    storybook:
+        build:
+            context: .
+            dockerfile: ./deployments/Dockerfile.storybook
+        ports:
+            - target: 6006
+              published: 6006
+              protocol: tcp
+              mode: host
