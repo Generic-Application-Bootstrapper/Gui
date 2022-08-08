@@ -1,0 +1,16 @@
+module.exports = {
+    moduleDirectories: ['src','test','node_modules'],
+    collectCoverageFrom:[
+        "!<rootDir>/node_modules",
+        "!<rootDir>/**/*.api.{js,jsx}",
+        "!<rootDir>/**/*.test.{js,jsx}",
+        "!<rootDir>/test/jest-setup.js",
+    ],
+    transform:{
+        "^.+\\.js$": "babel-jest"
+    },
+    globals:{
+        restless: true
+    },
+    setupFilesAfterEnv: ["./test/jest-setup.js"]
+}

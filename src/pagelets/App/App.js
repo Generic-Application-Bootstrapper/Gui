@@ -1,5 +1,6 @@
 import logo from "../../logo.svg";
 import "./App.css";
+import Petstore from "../Petstore/Petstore.jsx";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
                     Learn React
                 </a>
+                <Petstore />
             </header>
         </div>
     );

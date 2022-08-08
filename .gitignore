@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+/src/gen
+package-lock.json
+.storybook
+
 # testing
 /coverage
 
