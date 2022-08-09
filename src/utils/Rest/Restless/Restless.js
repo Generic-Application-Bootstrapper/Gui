@@ -1,6 +1,7 @@
 import _ from "lodash";
 import RestlessMapper from "./RestlessMapper";
 import "isomorphic-fetch";
+import { ANY } from "./RestlessTools";
 
 let fetch;
 
@@ -15,11 +16,11 @@ function showError(msg, path, method, providedParams, providedBody) {
 if (localStorage.getItem("MockRest") || (typeof global !== "undefined" && _.get(global, "restless"))) {
     console.debug("Restless Mocking");
     global.fetch = (url, options) => {
-        let urlOb;
-        let urlPath;
+        let urlObj;
+        let path;
         let providedParams = {};
         try {
-            urlOb = new URL(ur);
+            urlObj = new URL(url);
             path = urlObj.pathname;
             _.forEach(Array.from(urlObj.searchParams), (keyvalue) => {
                 providedParams[keyvalue[0]] = keyvalue[1];
@@ -35,7 +36,7 @@ if (localStorage.getItem("MockRest") || (typeof global !== "undefined" && _.get(
             showError("No match on method type", path, method, providedParams, providedBody);
         }
 
-        const endpoint = _.get(RestlessMapper, `[${path}].${method}`);
+        const endpoint = _.get(RestlessMapper, `["${path}"].${method}`);
         if (_.isNil(endpoint)) {
             showError("No match on endpoint", path, method, providedParams, providedBody);
         }

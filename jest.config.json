@@ -9,8 +9,4 @@ module.exports = {
     transform:{
         "^.+\\.js$": "babel-jest"
     },
-    globals:{
-        restless: true
-    },
-    setupFilesAfterEnv: ["./test/jest-setup.js"]
 }

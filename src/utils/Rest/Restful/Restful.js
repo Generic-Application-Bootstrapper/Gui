@@ -1,8 +1,7 @@
 import _ from "lodash";
-import { fetch } from "Restless";
-
-export const MAIN_API_NAME = "api";
-export const SECONDARY_API_NAME = "api";
+import { fetch } from "../Restless/Restless";
+import { afterRequest, beforeRequest } from "./RestfulTools";
+import { MAIN_API_NAME, SECONDARY_API_NAME, STATIC_RESOURCE_FILE } from "./DefaultConfigurations";
 
 function _fetchBuilder(domain, url, configs) {
     let params = "";
@@ -14,7 +13,7 @@ function _fetchBuilder(domain, url, configs) {
 }
 
 class _Restful {
-    constructor(staticResourceFile) {
+    constructor(staticResourceFile = STATIC_RESOURCE_FILE) {
         this.resourcesUnresolved = fetch(staticResourceFile);
     }
 
@@ -40,22 +39,40 @@ class _Restful {
     async delete(urlPath, configs, api) {
         const domain = await _getApi(api);
         let urlFull = _fetchBuilder(domain, urlPath, configs);
+        let requestObj = { urlFull, urlPath, configs, api };
+        beforeRequest(requestObj);
+
         const response = await fetch(urlFull, { method: "DELETE", ...configs });
-        return { ...response, data: response.json() };
+        let responseObj = { ...response, data: response.json() };
+        afterRequest(responseObj, requestObj);
+
+        return responseObj;
     }
 
     async get(urlPath, configs, api) {
         const domain = await _getApi(api);
         let urlFull = _fetchBuilder(domain, urlPath, configs);
+        let requestObj = { urlFull, urlPath, configs, api };
+        beforeRequest(requestObj);
+
         const response = await fetch(urlFull, { method: "GET", ...configs });
-        return { ...response, data: response.json() };
+        let responseObj = { ...response, data: response.json() };
+        afterRequest(responseObj, requestObj);
+
+        return responseObj;
     }
 
     async post(urlPath, data, configs, api) {
         const domain = await _getApi(api);
         let urlFull = _fetchBuilder(domain, urlPath, configs);
+        let requestObj = { urlFull, urlPath, data, configs, api };
+        beforeRequest(requestObj);
+
         const response = await fetch(urlFull, { method: "POST", ...configs, body: JSON.stringify(data) });
-        return { ...response, data: response.json() };
+        let responseObj = { ...response, data: response.json() };
+        afterRequest(responseObj, requestObj);
+
+        return responseObj;
     }
 }
 
