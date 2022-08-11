@@ -1,9 +1,16 @@
 pipeline {
-    agent { docker { image 'node:13.12.0-alpine' } }
+    agent {
+        docker {
+            image 'node:lts-bullseye-slim'
+            args '-p 3000:3000'
+        }
+    }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'node --version'
+                echo 'Hello'
+                sh 'npm -v'
+                sh 'npm install'
             }
         }
     }
