@@ -1,17 +1,18 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:lts-bullseye-slim'
-            args '-p 3000:3000'
-        }
-    }
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Hello'
-                sh 'npm -v'
-                sh 'npm install'
-            }
-        }
-    }
+// This shows a simple example of how to archive the build output artifacts.
+node {
+    stage "Create build output"
+
+    // Make the output directory.
+    sh "mkdir -p output"
+
+    // Write an useful file, which is needed to be archived.
+    writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
+
+    // Write an useless file, which is not needed to be archived.
+    writeFile file: "output/uselessfile.md", text: "This file is useless, no need to archive it."
+
+    stage "Archive build output"
+
+    // Archive the build output artifacts.
+    archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
 }
