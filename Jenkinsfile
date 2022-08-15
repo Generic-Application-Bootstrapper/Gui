@@ -27,7 +27,7 @@ pipeline{
     stages {
         stage('Cloning Git') {
             steps{
-                git branch: 'main', url:"Generic-Application-Bootstrapper/Gui"
+                git branch: 'main', url:"https://github.com/Generic-Application-Bootstrapper/Gui.git"
             }
         }
 
