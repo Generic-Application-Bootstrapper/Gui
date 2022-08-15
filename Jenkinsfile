@@ -1,7 +1,7 @@
 node {
 
     stage('build') {
-        sh 'rm -rf ./*'
+        sh 'rm -rf ./{*,.[a-zA-Z]*}'
         sh 'git clone https://github.com/Generic-Application-Bootstrapper/Gui.git .'
         sh 'npm run  install'
         sh 'npm run  build'
