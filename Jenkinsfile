@@ -27,7 +27,7 @@ pipeline{
     stages {
         stage('Cloning Git') {
             steps{
-                git "https://github.com/Generic-Application-Bootstrapper/Gui.git"
+                git "git@github.com:Generic-Application-Bootstrapper/Gui.git"
             }
         }
 
