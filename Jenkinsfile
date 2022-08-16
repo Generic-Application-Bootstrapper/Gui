@@ -45,7 +45,7 @@ pipeline{
 
         stage('Test') {
           steps {
-            sh 'node test'
+            sh 'node run quick-test'
           }
         }
     }
