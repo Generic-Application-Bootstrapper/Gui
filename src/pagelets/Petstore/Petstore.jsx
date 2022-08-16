@@ -1,5 +1,5 @@
 // import { useEffect } from "react";
-import { StoreApi } from "../../gen/index.ts";
+import { StoreApi } from "../../gen/index";
 import ConfigurationsSupplier from "../../utils/Rest/Restful/DefaultConfigurations";
 
 function Petstore() {
