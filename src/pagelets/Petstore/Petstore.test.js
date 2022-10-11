@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import render from "react-test-renderer";
 import Petstore from "./Petstore";
 import ConfigurationsSupplier from "../../utils/Rest/Restful/DefaultConfigurations";
 
