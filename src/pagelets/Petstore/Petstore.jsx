@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import React from "react";
 import { StoreApi } from "../../gen/index";
 import ConfigurationsSupplier from "../../utils/Rest/Restful/DefaultConfigurations";
 
