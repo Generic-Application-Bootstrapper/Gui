@@ -22,7 +22,7 @@
         "eject": "react-scripts eject",
         "storybook": "start-storybook -p 6006 -s public",
         "build-storybook": "build-storybook -s public",
-        "schemas": "npx openapi-generator-cli generate -g typescript-fetch -i ./schemas/petstore/petstore.yaml -o ./src/gen"
+        "schemas": "cd schemas/ && bash ./gui-client-gen.sh"
     },
     "eslintConfig": {
         "extends": [
